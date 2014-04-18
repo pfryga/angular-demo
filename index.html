@@ -8,19 +8,42 @@
 <body>
 	<div ng-app="myApp">
 		<div class="panel clearfix">
-		    <input type="text" ng-model="data.message">
+		    <input type="text" placeholder="insert some text, e.g. label or alert-box..." ng-model="data.message">
 			<h2>{{data.message + " world!"}}</h2>
 			<div class="{{data.message}}">
 				Have a nice day!
 			</div>
 		</div>
 		<div class="panel clearfix" ng-controller="FirstCtrl">
-			<input type="text" ng-model="data.secMessage">
+			<input type="text" placeholder="insert some text..." ng-model="data.secMessage">
 			<h3>hello {{data.message}}! {{data.testVar}}</h3>
 			<button ng-click="sayHelloWorld()">Click!</button>
-			<p>{{ reverseMessage(data.secMessage)}}</p>
-			<p>{{ reverseMessage(data.secMessage) | uppercase }}</p>
-			<p>{{ reverseMessage(data.secMessage) | lowercase }}</p>
+			<span class="label">{{ reverseMessage(data.secMessage)}}</span>
+			<span class="label">{{ reverseMessage(data.secMessage) | uppercase }}</span>
+			<span class="label">{{ reverseMessage(data.secMessage) | lowercase }}</span>
+			<span class="label">{{ data.secMessage | reverse }}</span>
+		</div>
+		<div class="panel clearfix" ng-controller="SecondCtrl">
+			<div class="row display">
+				<div class="large-12 columns">
+					<input type="text" placeholder="filter list below..." ng-model="searchText">
+				</div>
+				<div class="large-6 columns">
+					<ul>
+						<li ng-repeat="item in cities | filter:searchText">
+							<span class="label">{{ item }}</span>
+						</li>
+					</ul>
+				</div>
+				<div class="large-6 columns">
+					<ul ng-repeat="item in citiesJson | filter: searchText">
+						<li>
+							<span class="label">{{ item.city }}</span>
+							<span class="label">{{ item.president }}</span>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
